@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class MobileAPI {
 
     //Extent Report Setup
-    public static ExtentReports extent;
+    public static ExtentReports categories;
     public static AppiumDriver appiumDriver = null;
     public static String platform = null;
     public static WebDriver webDriver;
@@ -163,7 +163,7 @@ public class MobileAPI {
     @BeforeSuite
     public void extentSetup(ITestContext context) {
         ExtentManager.setOutputDirectory(context);
-        extent = ExtentManager.getInstance();
+        categories = ExtentManager.getInstance();
     }
 
     @BeforeMethod
@@ -191,7 +191,7 @@ public class MobileAPI {
         }
 
         ExtentTestManager.endTest();
-        extent.flush();
+        categories.flush();
 
         if (result.getStatus() == ITestResult.FAILURE) {
             if (platform.equalsIgnoreCase("android") || platform.equalsIgnoreCase("ios")) {
@@ -202,7 +202,7 @@ public class MobileAPI {
 
     @AfterSuite
     public void generateReport() {
-        extent.close();
+        categories.close();
     }
 
     private Date getTime(long millis) {
